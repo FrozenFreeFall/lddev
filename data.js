@@ -16,7 +16,7 @@ export const projects = [
     cover: 'assets/cases/launcher-preview.jpg', coverMode: 'single',
     images: ['assets/cases/launcher-preview.jpg', 'assets/cases/launcher-editor.jpg', 'assets/cases/launcher-android.jpg'],
     captions: ['电视网页预览 · 原创演示内容', 'Web 配置管理 · 页面编排与发布', 'Android 模拟器 · 本机应用频道'],
-    video: '',
+    video: 'assets/videos/星幕Launcher.mp4',
     features: [
       { title: '可视化配置', text: '品牌主题、频道排序、海报编排和轮播设置，在网页中完成并预览。' },
       { title: '发布与版本管理', text: '草稿、配置校验、版本发布及历史恢复，串起内容更新流程。' },
