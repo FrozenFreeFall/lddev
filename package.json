@@ -1,0 +1,13 @@
+{
+  "name": "hainan-developer-home",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "海南本地开发者 · 项目与能力展示",
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/verify.mjs",
+    "build": "node scripts/package.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
