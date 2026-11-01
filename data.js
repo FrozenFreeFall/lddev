@@ -464,13 +464,17 @@ export const projects = [
       "云函数",
       "云数据库"
     ],
-    "cover": "assets/cases/football-cover.jpg",
-    "coverMode": "single",
+    "cover": "assets/cases/football-home.png",
+    "coverMode": "phones",
     "images": [
-      "assets/cases/football-cover.jpg"
+      "assets/cases/football-home.png",
+      "assets/cases/football-detail.png",
+      "assets/cases/football-create.png"
     ],
     "captions": [
-      "趣伴云起 · 项目品牌分享图（非运行截图）"
+      "活动首页 · 发起入口与我的活动列表",
+      "活动详情 · 时间地点、报名名单与分享入口",
+      "发起活动 · 活动信息、历史选项与类型填写"
     ],
     "video": "",
     "features": [
@@ -487,7 +491,7 @@ export const projects = [
         "text": "费用凭证、AA 汇总和付款登记，采用线下收款与人工核账。"
       }
     ],
-    "note": "案例图为项目品牌分享图，不是运行截图。所述功能依据开发代码整理；不表示已正式发布，未宣称接入微信支付。"
+    "note": "案例截图由用户提供，展示活动首页、活动详情与发起活动页面。所述功能依据开发代码整理；不表示已正式发布，未宣称接入微信支付。"
   },
   {
     "id": "stone",

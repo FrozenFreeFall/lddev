@@ -13,6 +13,9 @@
 | furni-02.jpg | FurniColor-Assistant / doc/img/微信图片_20261021131046_154_81.jpg | 配方与加色参考 |
 | furni-03.jpg | FurniColor-Assistant / doc/img/微信图片_20261021131048_156_81.jpg | 目标色微调 |
 | football-cover.jpg | football-signup-miniprogram / miniprogram/assets/home-share.jpg | 品牌分享图，非运行截图 |
+| football-home.png | 用户提供 / 1.png | 活动首页，展示发起入口与我的活动列表；保留 PNG 原图 |
+| football-detail.png | 用户提供 / 2.png | 活动详情，展示时间地点、报名名单与分享入口；保留 PNG 原图 |
+| football-create.png | 用户提供 / 3.png | 发起活动，展示活动信息、历史选项与类型填写；保留 PNG 原图 |
 | stone-design.jpg | tian_ya_shi_tou / 1.png | 原设计稿，保留演示示例说明 |
 | stone-photo.jpg | tian_ya_shi_tou / web_home/assets/product-stone-demo.jpg | 示例藏石照片 |
 
@@ -40,3 +43,7 @@
 ## 星幕 TV 图库扩充（2026-11-01）
 
 图库现为 10 张：Android 3 张、Web 配置 4 张、电视网页预览 3 张，保留原有录屏。Android 频道及网格分别来自 docs/verification/android-fhd.png（裁去顶端工具栏区域）和 my-apps-grid.png（裁去39px宿主栏）；应用首页沿用 launcher-android.jpg。四张 Web 配置图是在独立 DATA_DIR、仅监听本机的服务中补拍，涵盖页面编排、Banner、全局样式与发布记录。电影/电视剧的电视网页预览来自 channel-movies.jpg、channel-series.jpg，明确标注为 Web 预览，影视海报为功能演示条目。没有把外部 Jetnews 应用或移动 Web 账号页标成星幕 Android 界面。源工程及实际业务数据未修改。
+
+## 趣伴云起截图更新（2026-11-02）
+
+使用用户提供的 1.png、2.png、3.png 原图，按活动首页、活动详情、发起活动排列。首页案例卡片使用首页与详情双图，详情支持三张截图切换、播放导览及查看原图。原品牌分享图保留为历史素材，当前案例展示已改为这三张截图。
