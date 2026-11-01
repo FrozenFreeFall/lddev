@@ -26,7 +26,7 @@ function coverMarkup(project) {
 
 function renderProjects(category = 'all') {
   const visible = filterProjects(projects, category);
-  grid.innerHTML = visible.map((project,index) => `<article class="project-card${category === 'all' && index < 2 ? ' featured' : ''}"><button type="button" data-project="${escapeHTML(project.id)}" aria-label="查看${escapeHTML(project.title)}案例详情"><div class="project-art ${escapeHTML(project.id)}">${coverMarkup(project)}<span class="art-category">${escapeHTML(project.categoryLabel)}</span><span class="art-badge"><span class="play-icon" aria-hidden="true">${project.video ? '▶' : '↗'}</span>${project.video ? '播放演示' : '查看案例'}</span></div><div class="project-title-row"><h3>${escapeHTML(project.title)}</h3><span class="project-arrow" aria-hidden="true">↗</span></div><p>${escapeHTML(project.subtitle)}</p><div class="project-tech">${project.tech.map(tag=>`<span>${escapeHTML(tag)}</span>`).join('')}</div></button></article>`).join('');
+  grid.innerHTML = visible.map((project,index) => `<article class="project-card${category === 'all' && index < 4 ? ' featured' : ''}"><button type="button" data-project="${escapeHTML(project.id)}" aria-label="查看${escapeHTML(project.title)}案例详情"><div class="project-art ${escapeHTML(project.id)}">${coverMarkup(project)}<span class="art-category">${escapeHTML(project.categoryLabel)}</span><span class="art-badge"><span class="play-icon" aria-hidden="true">${project.video ? '▶' : '↗'}</span>${project.video ? '播放演示' : '查看案例'}</span></div><div class="project-title-row"><h3>${escapeHTML(project.title)}</h3><span class="project-arrow" aria-hidden="true">↗</span></div><p>${escapeHTML(project.subtitle)}</p><div class="project-tech">${project.tech.map(tag=>`<span>${escapeHTML(tag)}</span>`).join('')}</div></button></article>`).join('');
   grid.querySelectorAll('img').forEach(img => img.addEventListener('error', () => {
     const art = img.closest('.project-art');
     if (art) {
@@ -101,11 +101,16 @@ function mountMedia(project) {
   target.querySelector('source').addEventListener('error',onError,{once:true});
 }
 
+function workflowMarkup(project) {
+  if (!project.workflow?.length) return '';
+  return '<div class="dialog-workflow"><h3>业务流程</h3><ol>'+project.workflow.map(step=>'<li>'+escapeHTML(step)+'</li>').join('')+'</ol></div>';
+}
+
 function openProject(id, trigger) {
   const project = projects.find(item=>item.id === id);
   if (!project) return;
   lastTrigger = trigger;
-  $('#dialog-content').innerHTML = `<div class="dialog-hero ${escapeHTML(id)}"></div><div class="dialog-body"><p class="dialog-eyebrow">PROJECT / ${escapeHTML(project.categoryLabel)}</p><h2 id="dialog-title">${escapeHTML(project.title)}</h2><p class="dialog-intro">${escapeHTML(project.description)}</p><div class="dialog-meta">${project.tech.map(tag=>`<span>${escapeHTML(tag)}</span>`).join('')}</div><div class="dialog-features">${project.features.map((feature,index)=>`<article><span>0${index+1}</span><h3>${escapeHTML(feature.title)}</h3><p>${escapeHTML(feature.text)}</p></article>`).join('')}</div><p class="dialog-note">${escapeHTML(project.note)}</p><div class="dialog-footer"><span>想做类似的产品？从你的业务场景聊起。</span><a class="button button-dark dialog-contact" href="#contact">聊聊我的项目 <span aria-hidden="true">↗</span></a></div></div>`;
+  $('#dialog-content').innerHTML = `<div class="dialog-hero ${escapeHTML(id)}"></div><div class="dialog-body"><p class="dialog-eyebrow">PROJECT / ${escapeHTML(project.categoryLabel)}</p><h2 id="dialog-title">${escapeHTML(project.title)}</h2><p class="dialog-intro">${escapeHTML(project.description)}</p><div class="dialog-meta">${project.tech.map(tag=>`<span>${escapeHTML(tag)}</span>`).join('')}</div>${workflowMarkup(project)}<div class="dialog-features">${project.features.map((feature,index)=>`<article><span>0${index+1}</span><h3>${escapeHTML(feature.title)}</h3><p>${escapeHTML(feature.text)}</p></article>`).join('')}</div><p class="dialog-note">${escapeHTML(project.note)}</p><div class="dialog-footer"><span>想做类似的产品？从你的业务场景聊起。</span><a class="button button-dark dialog-contact" href="#contact">聊聊我的项目 <span aria-hidden="true">↗</span></a></div></div>`;
   mountMedia(project);
   dialog.showModal();
   dialog.scrollTop = 0;
@@ -176,6 +181,7 @@ $('[data-copy-wechat]').addEventListener('click',async()=>{
   }
 });
 $('#year').textContent = new Date().getFullYear();
+$('[data-project-count]').textContent = String(projects.length).padStart(2,'0');
 renderProjects();
 
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

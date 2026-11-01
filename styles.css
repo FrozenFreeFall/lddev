@@ -374,7 +374,7 @@ nav{gap:23px;font-size:11px}
 .work-hint{display:none}
 .project-grid{gap:25px 20px}
 .project-card{grid-column:span 3}
-.project-card:last-child{grid-column:span 6}
+
 .project-card:last-child .project-art{height:240px}
 .project-art,.featured .project-art{height:240px}
 .service-grid{grid-template-columns:repeat(2,1fr);row-gap:40px}
@@ -574,3 +574,26 @@ nav .nav-contact{padding:10px 15px;justify-content:space-between}
 .reveal-ready{opacity:1;transform:none}
 .chart-line{stroke-dashoffset:0}
 }
+
+/* 业务系统与智能硬件案例 */
+.project-art.procurement{background:#dae8e4}
+.project-art.cashier{background:#e1eae2}
+.project-art.agriculture{background:#e8ead6}
+.project-art.rental{background:#dce7e8}
+.project-art.irrigation{background:#e2e8df}
+.project-art.irrigation>img{padding:33px 13px 12px}
+.hardware-service-row{margin-top:0;border-top:0}
+.dialog-workflow{margin-top:25px;padding:17px 20px;background:#edf0e5;border-radius:7px}
+.dialog-workflow h3{font-size:11px;font-weight:600;margin-bottom:10px;color:#6d8265}
+.dialog-workflow ol{display:flex;flex-wrap:wrap;gap:8px 0;list-style:none;padding:0;margin:0}
+.dialog-workflow li{font-size:10px;display:flex;align-items:center}
+.dialog-workflow li:not(:last-child):after{content:'→';color:#8fa083;margin:0 12px}
+.project-title-row{gap:12px}
+.project-title-row h3{line-height:1.5}
+.project-arrow{flex-shrink:0}
+@media(max-width:640px){.filters{justify-content:flex-start;gap:6px}.filters button{padding:7px 11px}.dialog-workflow{padding:14px}.dialog-workflow li{font-size:9px}.dialog-workflow li:not(:last-child):after{margin:0 8px}}
+
+/* 截图导览按钮保持单行 */
+.gallery-controls .gallery-caption{min-width:0}
+.gallery-controls .tour-toggle{white-space:nowrap;flex-shrink:0}
+@media(max-width:640px){.gallery-controls .gallery-caption{max-width:140px}}
