@@ -36,3 +36,7 @@
 | agriculture-overview / agriculture-devices / agriculture-events | smart_agriculture/nursery-watch 的真实 FastAPI 服务与 Web 前端；使用独立 SQLite 库和明确标记的模拟采样，拍摄监测看板、台账和事件规则。 |
 
 所有源工程保持不变。运行截图与电路图仅表示相应开发实现和设计资料，未把模拟采样、未接入的支付或未验收的实物当成正式运营成果。
+
+## 星幕 TV 图库扩充（2026-11-01）
+
+图库现为 10 张：Android 3 张、Web 配置 4 张、电视网页预览 3 张，保留原有录屏。Android 频道及网格分别来自 docs/verification/android-fhd.png（裁去顶端工具栏区域）和 my-apps-grid.png（裁去39px宿主栏）；应用首页沿用 launcher-android.jpg。四张 Web 配置图是在独立 DATA_DIR、仅监听本机的服务中补拍，涵盖页面编排、Banner、全局样式与发布记录。电影/电视剧的电视网页预览来自 channel-movies.jpg、channel-series.jpg，明确标注为 Web 预览，影视海报为功能演示条目。没有把外部 Jetnews 应用或移动 Web 账号页标成星幕 Android 界面。源工程及实际业务数据未修改。

@@ -22,14 +22,28 @@ export const projects = [
     "cover": "assets/cases/launcher-preview.jpg",
     "coverMode": "single",
     "images": [
+      "assets/cases/launcher-android-series.jpg",
+      "assets/cases/launcher-android.jpg",
+      "assets/cases/launcher-android-grid.jpg",
+      "assets/cases/launcher-web-editor.jpg",
+      "assets/cases/launcher-web-banner.jpg",
+      "assets/cases/launcher-web-theme.jpg",
+      "assets/cases/launcher-web-versions.jpg",
       "assets/cases/launcher-preview.jpg",
-      "assets/cases/launcher-editor.jpg",
-      "assets/cases/launcher-android.jpg"
+      "assets/cases/launcher-web-movies.jpg",
+      "assets/cases/launcher-web-series.jpg"
     ],
     "captions": [
+      "Android 客户端 · 电视剧频道与海报分组布局",
+      "Android 客户端 · 应用首页与本机应用入口",
+      "Android 客户端 · 六列应用网格与多行滚动",
+      "Web 配置前端 · 频道编排、实时预览与海报属性",
+      "Web 配置前端 · Banner 内容、自动轮播与时间间隔",
+      "Web 配置前端 · 背景、文字与焦点主题色",
+      "Web 配置前端 · 发布版本与恢复草稿",
       "电视网页预览 · 原创演示内容",
-      "Web 配置管理 · 页面编排与发布",
-      "Android 模拟器 · 本机应用频道"
+      "电视网页预览 · 电影频道的轮播与竖版片单",
+      "电视网页预览 · 电视剧频道的分组与大卡布局"
     ],
     "video": "assets/videos/星幕Launcher.mp4",
     "features": [
@@ -46,7 +60,25 @@ export const projects = [
         "text": "Compose 桌面、遥控焦点、本机应用启动、配置刷新和离线缓存。"
       }
     ],
-    "note": "展示为开发阶段的真实界面与演示配置；电视网页预览与 Android 模拟器截图分别标注。当前案例展示桌面与配置链路，未接入正式影视内容播放。"
+    "note": "图片分别标注 Android 模拟器、Web 配置前端与电视网页预览；影视条目和数据用于功能演示。案例展示桌面、应用启动和配置分发链路，未接入正式影视内容播放。",
+    "imageGroups": [
+      {
+        "label": "Android 客户端",
+        "start": 0,
+        "count": 3
+      },
+      {
+        "label": "Web 配置前端",
+        "start": 3,
+        "count": 4
+      },
+      {
+        "label": "电视网页预览",
+        "start": 7,
+        "count": 3
+      }
+    ],
+    "coverCaption": "电视网页预览 · 原创演示内容"
   },
   {
     "id": "procurement",

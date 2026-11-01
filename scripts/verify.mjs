@@ -26,6 +26,13 @@ for (const project of projects) {
   assert.ok(project.title && project.description && project.note);
   assert.ok(project.features.length >= 3 && project.features.length <= 6,`${project.id} 需有三至六项功能说明`);
   assert.equal(project.images.length,project.captions.length,`${project.id} 图片和说明不匹配`);
+  if(project.imageGroups) {
+    const indices = project.imageGroups.flatMap(group => {
+      assert.ok(Number.isInteger(group.start) && group.start >= 0 && Number.isInteger(group.count) && group.count > 0);
+      return Array.from({length:group.count},(_,offset)=>group.start+offset);
+    });
+    assert.deepEqual([...indices].sort((a,b)=>a-b),project.images.map((_,index)=>index),project.id+' 图片分类必须完整且不重叠');
+  }
   if(project.cover) checkPath(project.cover);
   for(const image of project.images) checkPath(image);
   if(project.video) checkPath(project.video);

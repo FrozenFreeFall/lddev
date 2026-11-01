@@ -8,7 +8,7 @@ const dialog = $('#project-dialog');
 let lastTrigger;
 let tourTimer;
 let toastTimer;
-let currentGalleryCleanup;
+let currentMediaCleanup;
 
 function illustration(id) {
   if (id === 'retro') return '<div class="case-illustration"><div class="art-game"><h4>RETRO / LAUNCH</h4><small>YOUR GAMES. YOUR WORLD.</small><div class="game-systems"><div>✚<small>CLASSIC</small></div><div>◈<small>ADVENTURE</small></div><div>◎<small>ARCADE</small></div></div></div></div>';
@@ -21,7 +21,7 @@ function coverMarkup(project) {
   if (project.coverMode === 'phones' && project.images?.length > 1) {
     return `<div class="art-phones">${project.images.slice(0,2).map((src,index)=>`<img src="./${escapeHTML(src)}" alt="${escapeHTML(project.captions[index])}" loading="lazy" width="360" height="780">`).join('')}</div>`;
   }
-  return project.cover ? `<img src="./${escapeHTML(project.cover)}" alt="${escapeHTML(project.captions?.[0] || project.title)}" loading="lazy" width="960" height="600">` : illustration(project.id);
+  return project.cover ? `<img src="./${escapeHTML(project.cover)}" alt="${escapeHTML(project.coverCaption || project.captions?.[0] || project.title)}" loading="lazy" width="960" height="600">` : illustration(project.id);
 }
 
 function renderProjects(category = 'all') {
@@ -47,17 +47,25 @@ function showToast(message) {
 
 function stopTour() { clearInterval(tourTimer); tourTimer = undefined; }
 
-function mountGallery(project, target) {
+function imageGroupMarkup(project, index = null) {
+  if (!project.imageGroups?.length) return '';
+  return '<div class="gallery-groups" role="group" aria-label="按界面类型查看截图">'+project.imageGroups.map(group=>`<button type="button" class="gallery-group" data-image-start="${group.start}" data-image-end="${group.start+group.count}" aria-pressed="${index !== null && index >= group.start && index < group.start+group.count}">${escapeHTML(group.label)} <span>${group.count}</span></button>`).join('')+'</div>';
+}
+
+function mountGallery(project, target, startIndex = 0) {
+  dialog.scrollTop = 0;
   stopTour();
-  currentGalleryCleanup?.();
+  currentMediaCleanup?.();
+  currentMediaCleanup = undefined;
+  target.querySelector('video')?.pause();
   if (!project.images?.length) {
     target.innerHTML = illustration(project.id);
     return;
   }
-  let index = 0;
+  let index = Math.max(0, Math.min(project.images.length - 1, Number.isInteger(startIndex) ? startIndex : 0));
   const multiple = project.images.length > 1;
   const mediaNote = multiple ? '截图导览 · 可手动切换或播放，非操作录屏' : '项目展示素材 · 说明见下方';
-  target.innerHTML = `<div class="gallery-container"><div class="gallery-image"><img alt=""></div><div class="gallery-controls">${multiple ? '<button type="button" class="gallery-prev" aria-label="上一张截图">←</button>' : ''}<span class="gallery-caption"></span>${multiple ? '<button type="button" class="gallery-next" aria-label="下一张截图">→</button><button type="button" class="tour-toggle" aria-pressed="false">▶ 播放导览</button>' : ''}</div><p class="media-note"><span class="media-status">${mediaNote}</span> · <a class="gallery-original" target="_blank" rel="noopener">查看原图 ↗</a></p></div>`;
+  target.innerHTML = `<div class="gallery-container">${imageGroupMarkup(project,index)}<div class="gallery-image"><img alt=""></div><div class="gallery-controls">${multiple ? '<button type="button" class="gallery-prev" aria-label="上一张截图">←</button>' : ''}<span class="gallery-caption"></span>${multiple ? '<button type="button" class="gallery-next" aria-label="下一张截图">→</button><button type="button" class="tour-toggle" aria-pressed="false">▶ 播放导览</button>' : ''}</div><p class="media-note"><span class="media-status">${mediaNote}</span> · <a class="gallery-original" target="_blank" rel="noopener">查看原图 ↗</a>${project.video ? ' · <button type="button" class="gallery-video">返回视频</button>' : ''}</p></div>`;
   const image = target.querySelector('.gallery-image img');
   const toggle = target.querySelector('.tour-toggle');
   const draw = () => {
@@ -65,6 +73,7 @@ function mountGallery(project, target) {
     image.alt = project.captions?.[index] || project.title;
     target.querySelector('.gallery-original').href = `./${project.images[index]}`;
     target.querySelector('.gallery-caption').textContent = `${index + 1} / ${project.images.length} · ${project.captions?.[index] || project.title}`;
+    target.querySelectorAll('[data-image-start]').forEach(button=>button.setAttribute('aria-pressed',String(index >= Number(button.dataset.imageStart) && index < Number(button.dataset.imageEnd))));
   };
   const pause = () => {
     stopTour();
@@ -81,25 +90,54 @@ function mountGallery(project, target) {
       toggle.setAttribute('aria-pressed', 'true');
     });
   }
+  target.querySelectorAll('[data-image-start]').forEach(button=>button.addEventListener('click',()=>{pause();index=Number(button.dataset.imageStart);draw();}));
+  target.querySelector('.gallery-video')?.addEventListener('click',()=>{mountMedia(project);target.querySelector('.video-fallback button')?.focus({preventScroll:true});});
   const onVisibility = () => { if (document.hidden) pause(); };
   document.addEventListener('visibilitychange', onVisibility);
-  currentGalleryCleanup = () => document.removeEventListener('visibilitychange', onVisibility);
-  image.addEventListener('error',()=>{ pause(); image.hidden = true; target.querySelector('.media-status').textContent = '这张图片暂时无法加载，请切换其他图片。'; });
-  image.addEventListener('load',()=>{ image.hidden = false; target.querySelector('.media-status').textContent = mediaNote; });
+  const status = target.querySelector('.media-status');
+  const onImageError = () => { if (!image.isConnected) return; pause(); image.hidden = true; status.textContent = '这张图片暂时无法加载，请切换其他图片。'; };
+  const onImageLoad = () => { if (!image.isConnected) return; image.hidden = false; status.textContent = mediaNote; };
+  image.addEventListener('error',onImageError);
+  image.addEventListener('load',onImageLoad);
+  currentMediaCleanup = () => {
+    document.removeEventListener('visibilitychange', onVisibility);
+    image.removeEventListener('error',onImageError);
+    image.removeEventListener('load',onImageLoad);
+  };
   draw();
 }
 
 function mountMedia(project) {
+  dialog.scrollTop = 0;
+  stopTour();
+  currentMediaCleanup?.();
+  currentMediaCleanup = undefined;
   const target = $('.dialog-hero');
   const media = selectMedia(project);
   if (media.type !== 'video') return mountGallery(project, target);
-  target.innerHTML = `<div class="video-container"><video controls playsinline preload="metadata"${project.cover ? ` poster="./${escapeHTML(project.cover)}"` : ''}><source src="./${escapeHTML(media.src)}"><p>此浏览器暂不支持视频播放。</p></video><p class="video-fallback">项目演示视频${project.images?.length ? ' · <button type="button">查看界面图片 ↗</button>' : ''}</p></div>`;
+  target.innerHTML = `<div class="video-container"><video controls playsinline preload="metadata"${project.cover ? ` poster="./${escapeHTML(project.cover)}"` : ''}><source src="./${escapeHTML(media.src)}"><p>此浏览器暂不支持视频播放。</p></video><p class="video-fallback">项目演示视频${project.images?.length ? ` · <button type="button">查看全部图片（${project.images.length}）↗</button>` : ''}</p>${imageGroupMarkup(project)}</div>`;
   const fallback = () => mountGallery(project, target);
-  target.querySelector('button')?.addEventListener('click', fallback);
-  const onError = () => { fallback(); showToast('视频暂时无法加载，已切换为项目界面。'); };
-  target.querySelector('video').addEventListener('error',onError,{once:true});
-  target.querySelector('source').addEventListener('error',onError,{once:true});
+  target.querySelector('.video-fallback button')?.addEventListener('click', fallback);
+  target.querySelectorAll('[data-image-start]').forEach(button=>button.addEventListener('click',()=>{
+    const start=Number(button.dataset.imageStart);
+    mountGallery(project,target,start);
+    target.querySelector(`[data-image-start="${start}"]`)?.focus({preventScroll:true});
+  }));
+  const video = target.querySelector('video');
+  const source = target.querySelector('source');
+  const onError = () => {
+    if (!video.isConnected || target.querySelector('video') !== video) return;
+    fallback(); showToast('视频暂时无法加载，已切换为项目界面。');
+  };
+  video.addEventListener('error',onError,{once:true});
+  source.addEventListener('error',onError,{once:true});
+  currentMediaCleanup = () => {
+    video.removeEventListener('error',onError);
+    source.removeEventListener('error',onError);
+    video.pause();
+  };
 }
+
 
 function workflowMarkup(project) {
   if (!project.workflow?.length) return '';
@@ -121,8 +159,8 @@ function openProject(id, trigger) {
 function closeDialog() { if (dialog.open) dialog.close(); }
 dialog.addEventListener('close',()=>{
   stopTour();
-  currentGalleryCleanup?.();
-  currentGalleryCleanup = undefined;
+  currentMediaCleanup?.();
+  currentMediaCleanup = undefined;
   dialog.querySelector('video')?.pause();
   $('#dialog-content').innerHTML = '';
   document.body.classList.remove('modal-open');
