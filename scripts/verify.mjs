@@ -22,7 +22,7 @@ function checkPath(asset) {
 for (const match of html.matchAll(/(?:src|href)="(\.\/[^"]+)"/g)) checkPath(match[1]);
 for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]),`锚点不存在：${match[1]}`);
 for (const project of projects) {
-  assert.ok(['app','mini','fullstack','hardware'].includes(project.category));
+  assert.ok(['app','mini','fullstack','hardware','extension'].includes(project.category));
   assert.ok(project.title && project.description && project.note);
   assert.ok(project.features.length >= 3 && project.features.length <= 6,`${project.id} 需有三至六项功能说明`);
   assert.equal(project.images.length,project.captions.length,`${project.id} 图片和说明不匹配`);

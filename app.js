@@ -64,7 +64,7 @@ function mountGallery(project, target, startIndex = 0) {
   }
   let index = Math.max(0, Math.min(project.images.length - 1, Number.isInteger(startIndex) ? startIndex : 0));
   const multiple = project.images.length > 1;
-  const mediaNote = multiple ? '截图导览 · 可手动切换或播放，非操作录屏' : '项目展示素材 · 说明见下方';
+  const mediaNote = project.galleryNote || (multiple ? '截图导览 · 可手动切换或播放，非操作录屏' : '项目展示素材 · 说明见下方');
   target.innerHTML = `<div class="gallery-container">${imageGroupMarkup(project,index)}<div class="gallery-image"><img alt=""></div><div class="gallery-controls">${multiple ? '<button type="button" class="gallery-prev" aria-label="上一张截图">←</button>' : ''}<span class="gallery-caption"></span>${multiple ? '<button type="button" class="gallery-next" aria-label="下一张截图">→</button><button type="button" class="tour-toggle" aria-pressed="false">▶ 播放导览</button>' : ''}</div><p class="media-note"><span class="media-status">${mediaNote}</span> · <a class="gallery-original" target="_blank" rel="noopener">查看原图 ↗</a>${project.video ? ' · <button type="button" class="gallery-video">返回视频</button>' : ''}</p></div>`;
   const image = target.querySelector('.gallery-image img');
   const toggle = target.querySelector('.tour-toggle');

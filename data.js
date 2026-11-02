@@ -8,6 +8,95 @@ export const site = {
 
 export const projects = [
   {
+    "id": "translation",
+    "category": "extension",
+    "categoryLabel": "浏览器插件 · 双语翻译",
+    "title": "网页翻译插件",
+    "subtitle": "让大熊猫陪你读网页、看 PDF 和 YouTube。",
+    "description": "一只可拖动、会贴边休息的黑白大熊猫，提供网页、PDF、YouTube 双语翻译，以及划词翻译与英文单词词典。支持微软免费、谷歌免费、LibreTranslate 自建服务，以及自定义 AI；各场景共用已保存的翻译引擎与目标语言。",
+    "tech": [
+      "浏览器扩展",
+      "双语阅读",
+      "多引擎 / 自定义 AI"
+    ],
+    "cover": "assets/cases/translation-web-bilingual.png",
+    "coverCaption": "网页双语翻译 · 原文、译文与贴边大熊猫",
+    "coverMode": "single",
+    "images": [
+      "assets/cases/translation-web-bilingual.png",
+      "assets/cases/translation-web-original.png",
+      "assets/cases/translation-web-demo.gif",
+      "assets/cases/translation-pdf-parallel.png",
+      "assets/cases/translation-pdf-reading.png",
+      "assets/cases/translation-pdf-demo.gif",
+      "assets/cases/translation-selection.png",
+      "assets/cases/translation-dictionary.png",
+      "assets/cases/translation-settings.png"
+    ],
+    "captions": [
+      "网页双语翻译 · 保留原文，段落对照阅读与贴边大熊猫",
+      "网页原文 · 阅读页面与大熊猫悬浮入口",
+      "网页翻译动图 · 大熊猫入口与双语阅读演示",
+      "PDF 双语对照 · 目录导航与原文、译文并排阅读",
+      "PDF 双语阅读 · 重排正文，中英文逐段对照",
+      "PDF 翻译动图 · 文档导航与翻译演示",
+      "划词翻译 · 选中句子，查看原文与译文并复制",
+      "英文单词词典 · 音标、发音、词性与中英文释义",
+      "翻译引擎设置 · 微软免费、谷歌免费、LibreTranslate 自建与自定义 AI"
+    ],
+    "video": "",
+    "galleryNote": "7 张截图与 2 个 GIF 动图 · 动图可直接播放，支持切换与查看原图",
+    "imageGroups": [
+      {
+        "label": "网页翻译",
+        "start": 0,
+        "count": 3
+      },
+      {
+        "label": "PDF 翻译",
+        "start": 3,
+        "count": 3
+      },
+      {
+        "label": "划词与词典",
+        "start": 6,
+        "count": 2
+      },
+      {
+        "label": "引擎设置",
+        "start": 8,
+        "count": 1
+      }
+    ],
+    "features": [
+      {
+        "title": "会贴边休息的大熊猫",
+        "text": "黑白大熊猫作为悬浮入口，可拖动到顺手的位置，也会贴边休息，让翻译随时可用。"
+      },
+      {
+        "title": "网页与 YouTube 双语翻译",
+        "text": "提供网页双语对照阅读与 YouTube 双语翻译，在浏览内容时同时参考原文与译文。"
+      },
+      {
+        "title": "PDF 对照与双语阅读",
+        "text": "支持 PDF 原文与译文并排对照，也可在重排后的阅读视图中逐段查看双语内容。"
+      },
+      {
+        "title": "划词翻译与英文词典",
+        "text": "选中文字即可翻译和复制译文；英文单词可查看音标、发音、词性及中英文释义。"
+      },
+      {
+        "title": "免费、自建与自定义 AI",
+        "text": "支持微软免费、谷歌免费、LibreTranslate 自建服务，以及自定义 AI，按阅读需求选择翻译引擎。"
+      },
+      {
+        "title": "翻译偏好跨场景共用",
+        "text": "网页、PDF、YouTube 与划词翻译共用已保存的翻译引擎和目标语言，切换场景时延续同一套偏好。"
+      }
+    ],
+    "note": "截图与 GIF 动图由用户提供，展示网页、PDF、划词翻译、英文词典与翻译引擎设置；YouTube 双语翻译按用户提供的功能介绍列出。"
+  },
+  {
     "id": "property",
     "category": "mini",
     "categoryLabel": "微信小程序 + Web 管理后台",

@@ -2,6 +2,24 @@
 
 所有输出均为源项目素材或用户提供截图的副本，源项目未修改；JPEG 素材已按展示需要压缩。下列源路径相对于用户提供的对应项目根目录，不作为网页运行依赖。
 
+## 网页翻译插件新增案例（2026-11-02）
+
+使用用户提供的 7 张 PNG 与 2 个 GIF 原文件，统一复制到 `assets/cases/`。GIF 保留动画，首页使用静态双语网页截图，详情按网页翻译、PDF 翻译、划词与词典、引擎设置分组；YouTube 双语翻译按用户提供的功能介绍列出。
+
+| 网站文件 | 来源（Webpage_Translation_Plugin/docs/） | 展示说明 |
+| --- | --- | --- |
+| translation-web-bilingual.png | 网页_2.png | 网页双语对照与贴边大熊猫，首页封面 |
+| translation-web-original.png | 网页_1.png | 原文页面与大熊猫悬浮入口 |
+| translation-web-demo.gif | 网页翻译.gif | 网页翻译动画演示，保留原 GIF |
+| translation-pdf-parallel.png | pdf_1.png | PDF 目录与双栏对照 |
+| translation-pdf-reading.png | pdf_2.png | 重排后的双语阅读视图 |
+| translation-pdf-demo.gif | pdf翻译.gif | PDF 翻译动画演示，保留原 GIF |
+| translation-selection.png | 划词翻译_2.png | 句子翻译与复制译文 |
+| translation-dictionary.png | 划词翻译_1.png | 英文单词音标、发音与释义 |
+| translation-settings.png | 设置.png | 四类翻译引擎设置 |
+
+## 既有案例素材
+
 | 网站文件 | 源项目 / 源文件 | 展示说明 |
 | --- | --- | --- |
 | launcher-preview.jpg | Launcher_System / docs/verification/banner-fixed.jpg | 真实电视网页预览，原创演示内容 |

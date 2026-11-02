@@ -175,6 +175,7 @@ nav>a:hover:after{width:100%}
 .project-tech>span{font-size:8px;border:1px solid var(--line);border-radius:3px;padding:1px 6px;color:#72816d}
 .case-note{font-size:10px;color:#899288;text-align:center;margin-top:39px}
 .project-art.launcher{background:#e4e9dc}
+.project-art.translation{background:#ebe9f6}
 .project-art.retro{background:#e8dacc}
 .project-art.furni{background:#ece5d6}
 .project-art.football{background:#dfebdf}
