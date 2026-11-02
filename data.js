@@ -8,6 +8,84 @@ export const site = {
 
 export const projects = [
   {
+    "id": "property",
+    "category": "mini",
+    "categoryLabel": "微信小程序 + Web 管理后台",
+    "title": "邻里云 · 智慧物业服务",
+    "subtitle": "物业缴费在线办，资金直达物业账户。",
+    "description": "连接住户与物业的社区服务平台，由微信小程序与 Web 管理后台组成。围绕物业费、停车费和水费线上缴纳，资金直接进入物业账户，同时配套社区公告、在线报修、社区活动、家政预约、邻里圈子、二手置换与房屋租售，让缴费和日常社区服务在一个入口完成。",
+    "tech": [
+      "微信小程序",
+      "Web 管理后台",
+      "在线缴费"
+    ],
+    "cover": "assets/cases/property-home.png",
+    "coverMode": "phones",
+    "images": [
+      "assets/cases/property-home.png",
+      "assets/cases/property-payment.png",
+      "assets/cases/property-services.png",
+      "assets/cases/property-profile.png",
+      "assets/cases/property-overview.png",
+      "assets/cases/property-bills.png"
+    ],
+    "captions": [
+      "住户小程序 · 房屋切换、待缴账单与社区服务入口",
+      "账单缴费 · 物业费、停车费和水费分类与合并勾选",
+      "服务与工单 · 在线报修、家政预约与服务进度",
+      "我的生活 · 通知、活动报名、缴费凭证与房屋信息",
+      "Web 管理后台 · 工作概览、费用统计与社区服务工作台",
+      "Web 管理后台 · 账单管理、收款主体与缴费状态"
+    ],
+    "video": "",
+    "imageGroups": [
+      {
+        "label": "住户小程序",
+        "start": 0,
+        "count": 4
+      },
+      {
+        "label": "Web 管理后台",
+        "start": 4,
+        "count": 2
+      }
+    ],
+    "workflow": [
+      "物业出账",
+      "住户查账",
+      "线上缴费",
+      "资金直达物业账户",
+      "后台对账"
+    ],
+    "features": [
+      {
+        "title": "三类费用线上缴纳",
+        "text": "物业费、停车费、水费集中查账与缴纳；同一收款主体的账单可合并勾选支付，资金直接进入物业账户。"
+      },
+      {
+        "title": "物业账务集中管理",
+        "text": "Web 后台统一管理账单、收款商户、收费规则与水表抄表，配套支付流水、退款审批、渠道对账和财务报表。"
+      },
+      {
+        "title": "公告与社区活动",
+        "text": "社区公告集中发布，住户查看通知、参与社区活动，在个人中心查看活动报名。"
+      },
+      {
+        "title": "报修与家政服务",
+        "text": "住户在线提交报修、预约家政，查看服务工单与处理进度，从申请到验收跟进服务。"
+      },
+      {
+        "title": "邻里圈子与二手置换",
+        "text": "邻里圈子连接社区交流，闲置集市承接二手物品发布与置换，让社区信息更方便流通。"
+      },
+      {
+        "title": "房屋租售与住户中心",
+        "text": "提供房屋租售入口，关联住户与房屋信息，集中查看个人发布、缴费凭证、退款与历史物业服务。"
+      }
+    ],
+    "note": "截图由用户提供，展示住户小程序与 Web 管理后台的演示环境；页面金额与数据用于功能展示，不代表真实交易或运营数据。"
+  },
+  {
     "id": "launcher",
     "category": "fullstack",
     "categoryLabel": "后台 + Web + Android",
